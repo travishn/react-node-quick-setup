@@ -3,6 +3,26 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      response: ''
+    };
+  }
+
+  componentDidMount() {
+    fetch('/test').then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw Error(`Request rejected with status ${res.status}`);
+      }
+    }).then(json => {
+      this.setState({response: json.express});
+    }).catch(console.error);
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -11,7 +31,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {this.state.response}
         </p>
       </div>
     );

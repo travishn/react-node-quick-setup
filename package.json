@@ -15,8 +15,6 @@
     "start": "nodemon index.js",
     "client": "cd client && npm start",
     "dev": "concurrently --kill-others-on-fail 'npm start' 'npm run client'"
-
-
   },
   "repository": {
     "type": "git",
